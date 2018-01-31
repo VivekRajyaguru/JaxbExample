@@ -32,6 +32,15 @@ public class Main {
 			res.setBeanList(dataList);
 			marshel.marshal(res, file);
 			
+			Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
+			
+			Result obj = (Result) jaxbUnmarshaller.unmarshal(file);
+			List<Bean> beanListObj = obj.getBeanList();
+			
+			for(Bean bean: beanListObj) {
+				System.out.println(bean.getId() +" "+bean.getName() + "" + bean.getCity());
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
